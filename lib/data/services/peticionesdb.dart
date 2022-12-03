@@ -32,6 +32,6 @@ class PeticionesDB {
 
   static Future<void> eliminar(int id) async {
     final db = await PeticionesDB.db();
-    await db.delete("apunte", where: "id=?", whereArgs: [id]);
+    await db.delete("puntos", where: "id=?", whereArgs: [id]);
   }
 }

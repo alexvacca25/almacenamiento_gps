@@ -5,6 +5,8 @@ class ControlPuntos extends GetxController {
   final Rxn<List<Map<String, dynamic>>> _listaPuntos =
       Rxn<List<Map<String, dynamic>>>();
 
+  List<Map<String, dynamic>>? get listagral => _listaPuntos.value;
+
   Future<void> consultaGral() async {
     _listaPuntos.value = await PeticionesDB.listar();
   }
@@ -25,7 +27,10 @@ class ControlPuntos extends GetxController {
 
   Future<void> delPunto(id) async {
     await PeticionesDB.eliminar(id)
-        .then((value) => null)
+        .then((value) => Get.showSnackbar(const GetSnackBar(
+              message: 'Punto Eliminado',
+              duration: Duration(seconds: 4),
+            )))
         .catchError((e) => null);
   }
 }
